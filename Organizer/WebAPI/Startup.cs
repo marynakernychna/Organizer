@@ -2,6 +2,7 @@ using WebAPI.Middlewares;
 using WebAPI.ServiceExtension;
 using Core;
 using Core.Helpers;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +28,9 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                app.UseSwaggerUI(
+                    c => c.SwaggerEndpoint(
+                        "/swagger/v1/swagger.json", "API v1"));
             }
 
             app.UseHttpsRedirection();
@@ -56,6 +59,12 @@ namespace WebAPI
             IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddIdentityDbContext();
+
+            services.AddDbContext(
+                Configuration
+                    .GetConnectionString("DefaultConnection"));
 
             services.AddAuthentication();
 
