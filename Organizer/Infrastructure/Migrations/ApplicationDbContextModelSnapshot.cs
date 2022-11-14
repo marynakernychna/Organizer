@@ -147,6 +147,15 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8f4ff0e1-5ea9-43be-9928-13e1cd04a272",
+                            ConcurrencyStamp = "8f4ff0e1-5ea9-43be-9928-13e1cd04a272",
+                            Name = "Client",
+                            NormalizedName = "CLIENT"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

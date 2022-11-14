@@ -5,11 +5,18 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Core.Helpers;
 using Microsoft.OpenApi.Models;
+using Core.Interfaces;
+using Core.Services;
 
 namespace WebAPI.ServiceExtension
 {
     public static class ServiceExtensions
     {
+        public static void AddCustomServices(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+        }
+
         public static void AddJwtAuthentication(
             this IServiceCollection serviceCollection,
             IConfiguration configuration)

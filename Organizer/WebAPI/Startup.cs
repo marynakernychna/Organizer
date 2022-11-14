@@ -71,6 +71,8 @@ namespace WebAPI
             services.Configures(
                 Configuration.GetSection(nameof(AppSettings)));
 
+            services.AddCustomServices();
+
             services.AddAutoMapper();
 
             services.AddResponseCaching();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Helpers;
+using Core.Helpers.Mappers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,9 +8,13 @@ namespace Core
 {
     public static class ServiceExtensions
     {
-        public static void AddAutoMapper(this IServiceCollection services)
+        public static void AddAutoMapper(
+            this IServiceCollection services)
         {
-            var configures = new MapperConfiguration(mc => { });
+            var configures = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AuthenticationMapper());
+            });
 
             var mapper = configures.CreateMapper();
             services.AddSingleton(mapper);

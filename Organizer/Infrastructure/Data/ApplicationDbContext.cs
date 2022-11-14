@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Core.Entities;
+using Infrastructure.Data.SeedData;
 
 namespace Infrastructure.Data
 {
@@ -17,6 +18,7 @@ namespace Infrastructure.Data
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new RefreshTokenConfiguration());
 
+            builder.Seed();
             base.OnModelCreating(builder);
         }
     }
